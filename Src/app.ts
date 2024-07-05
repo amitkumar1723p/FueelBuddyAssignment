@@ -1,7 +1,7 @@
 import Fastify from 'fastify'
  import{ Connectdb} from './Database/DatabaseConnection'
  import {userModel}  from './Model/model'
-import { after } from 'node:test';
+ 
 
 const fastify = Fastify({
   logger: true
