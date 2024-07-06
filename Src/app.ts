@@ -3,6 +3,7 @@ import Fastify from 'fastify'
  import {userModel}  from './Model/model'
  
  
+ 
 
 const fastify = Fastify({
   logger: true

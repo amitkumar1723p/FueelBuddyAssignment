@@ -21,6 +21,12 @@ const fastify = (0, fastify_1.default)({
 process.on("uncaughtException", (err) => {
     process.exit(1);
 });
+//  get env file  absloute path
+// let envfileabsPath = join(process.cwd(),"CRUD_OPREATION", "Src" ,"Config", ".env");
+// if (process.env.PRODUCTION != true) {
+//   dotenv.config({ path: envfileabsPath });
+// C:\Users\amitk\Desktop\FuelBuddy Assignment\\Src\Config\.env
+// C:\Users\amitk\Desktop\FuelBuddy Assignment\\Src\Config\.env
 (0, DatabaseConnection_1.Connectdb)();
 //  Get All user 
 fastify.get('/', (request, reply) => __awaiter(void 0, void 0, void 0, function* () {
@@ -77,8 +83,9 @@ fastify.delete('/:id', (request, reply) => __awaiter(void 0, void 0, void 0, fun
     }
     reply.send("delete Request");
 }));
+const Port = process.env.PORT || 3000;
 // Run the server!
-fastify.listen({ port: 3000 }, (err, address) => {
+fastify.listen(Port, (err, address) => {
     if (err) {
         process.exit(1);
     }
