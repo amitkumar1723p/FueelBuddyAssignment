@@ -157,13 +157,13 @@ fastify.delete<{ Params: MyParams }> ('/:id', async(request,reply)=>{
 
 
 
-const serverPort  =process.env.PORT ||3000
+const Port = process.env.PORT || 3000;
 
    
 
 
 // Run the server!
-fastify.listen( serverPort, (err, address) => {
+fastify.listen( Port, (err, address) => {
   if (err) {
     process.exit(1)
   }
