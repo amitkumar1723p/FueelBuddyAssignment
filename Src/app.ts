@@ -2,10 +2,16 @@ import Fastify from 'fastify'
  import{ Connectdb} from './Database/DatabaseConnection'
  import {userModel}  from './Model/model'
  
+ 
 
 const fastify = Fastify({
   logger: true
 })
+ 
+
+// const envfileabsPath =  join(process.cwd(),'Src','config' ,'.env')
+// dotenv.config({ path: envfileabsPath });
+
  
 
 interface MyParams {
@@ -22,6 +28,19 @@ interface Update {
       process.exit(1);
     });
     
+
+    //  get env file  absloute path
+// let envfileabsPath = join(process.cwd(),"CRUD_OPREATION", "Src" ,"Config", ".env");
+
+
+// if (process.env.PRODUCTION != true) {
+//   dotenv.config({ path: envfileabsPath });
+// C:\Users\amitk\Desktop\FuelBuddy Assignment\\Src\Config\.env
+// C:\Users\amitk\Desktop\FuelBuddy Assignment\\Src\Config\.env
+
+
+
+
 Connectdb()
 
 //  Get All user 
@@ -138,11 +157,13 @@ fastify.delete<{ Params: MyParams }> ('/:id', async(request,reply)=>{
 
 
 
+const serverPort  =process.env.PORT ||3000
 
+   
 
 
 // Run the server!
-fastify.listen({ port: 3000 }, (err, address) => {
+fastify.listen( serverPort, (err, address) => {
   if (err) {
     process.exit(1)
   }
