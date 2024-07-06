@@ -2,7 +2,8 @@ import Fastify from 'fastify'
  import{ Connectdb} from './Database/DatabaseConnection'
  import {userModel}  from './Model/model'
  
- 
+import { join } from 'path'
+import dotenv from 'dotenv'
  
 
 const fastify = Fastify({
@@ -10,8 +11,8 @@ const fastify = Fastify({
 })
  
 
-// const envfileabsPath =  join(process.cwd(),'Src','config' ,'.env')
-// dotenv.config({ path: envfileabsPath });
+const envfileabsPath =  join(process.cwd(),'Src','config' ,'.env')
+dotenv.config({ path: envfileabsPath });
 
  
 
@@ -158,8 +159,8 @@ fastify.delete<{ Params: MyParams }> ('/:id', async(request,reply)=>{
 
 
 
-const Port = process.env.PORT || 3000;
-
+const Port = process.env.PORT || 3000
+console.log(Port)
    
 
 

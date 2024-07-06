@@ -15,9 +15,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const fastify_1 = __importDefault(require("fastify"));
 const DatabaseConnection_1 = require("./Database/DatabaseConnection");
 const model_1 = require("./Model/model");
+const path_1 = require("path");
+const dotenv_1 = __importDefault(require("dotenv"));
 const fastify = (0, fastify_1.default)({
     logger: true
 });
+const envfileabsPath = (0, path_1.join)(process.cwd(), 'Src', 'config', '.env');
+dotenv_1.default.config({ path: envfileabsPath });
 process.on("uncaughtException", (err) => {
     process.exit(1);
 });
@@ -83,7 +87,8 @@ fastify.delete('/:id', (request, reply) => __awaiter(void 0, void 0, void 0, fun
     }
     reply.send("delete Request");
 }));
-const Port = process.env.PORT || 3000;
+const Port = process.env.PORT ;
+console.log(Port);
 // Run the server!
 fastify.listen(Port, (err, address) => {
     if (err) {

@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "@fastify/mongodb": "^8.0.0",
+    "dotenv": "^16.4.5",
     "fastify": "^4.28.1",
     "mongoose": "^8.4.4"
   }
