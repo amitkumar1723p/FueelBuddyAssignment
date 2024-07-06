@@ -1,4 +1,5 @@
 import Fastify from 'fastify'
+import { FastifyInstance } from 'fastify/types/instance';
  import{ Connectdb} from './Database/DatabaseConnection'
  import {userModel}  from './Model/model'
  
@@ -6,10 +7,9 @@ import { join } from 'path'
 import dotenv from 'dotenv'
  
 
-const fastify = Fastify({
-  logger: true
-})
  
+ 
+const fastify: FastifyInstance = Fastify()
 
 const envfileabsPath =  join(process.cwd(),'Src','config' ,'.env')
 dotenv.config({ path: envfileabsPath });
@@ -159,13 +159,12 @@ fastify.delete<{ Params: MyParams }> ('/:id', async(request,reply)=>{
 
 
 
-const Port = process.env.PORT || 3000
-console.log(Port)
+// const Port = process.env.PORT || 3000
    
 
 
 // Run the server!
-fastify.listen( Port, (err, address) => {
+fastify.listen( {port :3000,host:'0.0.0.0'}, (err, address) => {
   if (err) {
     process.exit(1)
   }

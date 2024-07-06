@@ -17,9 +17,7 @@ const DatabaseConnection_1 = require("./Database/DatabaseConnection");
 const model_1 = require("./Model/model");
 const path_1 = require("path");
 const dotenv_1 = __importDefault(require("dotenv"));
-const fastify = (0, fastify_1.default)({
-    logger: true
-});
+const fastify = (0, fastify_1.default)();
 const envfileabsPath = (0, path_1.join)(process.cwd(), 'Src', 'config', '.env');
 dotenv_1.default.config({ path: envfileabsPath });
 process.on("uncaughtException", (err) => {
@@ -87,10 +85,9 @@ fastify.delete('/:id', (request, reply) => __awaiter(void 0, void 0, void 0, fun
     }
     reply.send("delete Request");
 }));
-const Port = process.env.PORT ;
-console.log(Port);
+// const Port = process.env.PORT || 3000
 // Run the server!
-fastify.listen(Port, (err, address) => {
+fastify.listen({ port: 3000, host: '0.0.0.0' }, (err, address) => {
     if (err) {
         process.exit(1);
     }
